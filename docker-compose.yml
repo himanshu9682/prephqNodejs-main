@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - PORT=3000
+      - CODE_RUNNER_IMAGE=node:18
+      - CODE_RUNNER_IMAGE_JS=node:18
+      - CODE_RUNNER_IMAGE_PYTHON=python:3.11
+      - CODE_RUNNER_IMAGE_JAVA=eclipse-temurin:17-jdk
+      - CODE_RUNNER_IMAGE_CPP=gcc:13
+    volumes:
+      - ./:/usr/src/app
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/src/app/node_modules
+    command: npm run dev
